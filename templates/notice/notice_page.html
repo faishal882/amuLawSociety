@@ -1,18 +1,17 @@
-<!-- Load the wagtailimages_tags: -->
-{% load wagtailcore_tags wagtailimages_tags %}
-
-{% block body_class %}template-noticepage{% endblock %}
+{% extends "base.html" %}
+{% load navigation_tags wagtailimages_tags %}
+{% load wagtailcore_tags %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.date }}</p>
-
     
-    <div class="intro">{{ page.intro }}</div>
+    {% include "base/include/header-blog.html" %}
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {{ page.body|richtext }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
 
-    {{ page.body|richtext }}
-
-
-    <p><a href="{{ page.get_parent.url }}">Return to Notice</a></p>
-
-{% endblock %}

@@ -1,24 +1,27 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block title %}
+  Notices | AMU LAW SOCIETY
+{% endblock %}
+
 
 {% block content %}
+    {% include "base/include/header-index.html" %}
 
-    {% if request.GET.tag %}
-        <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
-    {% endif %}
-    
-    <h2>{{ header }}</h2>
-
-    {% for notice in noticepages %}
-      {% with notice=notice.specific %}
-        <h2><a href="{% pageurl notice %}">{{ notice.title }}</a></h2>
-        <p>{{ notice.date }}</p>
-
-      {% endwith %}
-
-    {% empty %}
-        No Notice Available.
-    {% endfor %}
-
-{% endblock %}
+    <div class="container">
+        <div class="blog-list">
+          {% if noticepages %}
+          {% for blog in noticepages %}
+            {% with blog=blog.specific %}
+                {% include "includes/card/blog-listing-card.html" %}
+            {% endwith %}
+          {% endfor %}
+          {% else %}
+            <div class="col-md-12">
+              <p>No Recent Notices</p>
+            </div>
+         {% endif %}
+        </div>
+    </div>
+{% endblock content %}
