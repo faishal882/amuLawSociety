@@ -3,7 +3,7 @@
 <div class="header clearfix">
     <div class="container">
         <div class="navigation" data-navigation>
-            <a href="/" class="navigation__logo">The Wagtail Bakery</a>
+            <a href="/" class="navigation__logo">AMU LAW SOCIETY</a>
 
             <button
                 type="button"
@@ -18,9 +18,9 @@
             </button>
 
             <nav class="navigation__mobile" data-mobile-navigation hidden>
-                <a href="/" class="navigation__logo">The Wagtail Bakery</a>
+                <a href="/" class="navigation__logo">AMU LAW SOCIETY</a>
                 <ul class="navigation__items nav-pills">
-                    {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                    {# main_menu is defined in home/templatetags/navigation_tags.py #}
                     {% get_site_root as site_root %}
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>
@@ -37,7 +37,7 @@
 
             <nav class="navigation__desktop" aria-label="Main">
                 <ul class="navigation__items nav-pills">
-                    {# main_menu is defined in base/templatetags/navigation_tags.py #}
+                    {# main_menu is defined in home/templatetags/navigation_tags.py #}
                     {% get_site_root as site_root %}
                     {% top_menu parent=site_root calling_page=self %}
                 </ul>

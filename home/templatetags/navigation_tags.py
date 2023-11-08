@@ -1,7 +1,6 @@
 from django import template
 from wagtail.models import Page, Site
 
-from bakerydemo.base.models import FooterText
 
 register = template.Library()
 # https://docs.djangoproject.com/en/3.2/howto/custom-template-tags/
@@ -102,9 +101,9 @@ def get_footer_text(context):
     footer_text = context.get("footer_text", "")
 
     # If the context doesn't have footer_text defined, get one that's live
-    if not footer_text:
-        instance = FooterText.objects.filter(live=True).first()
-        footer_text = instance.body if instance else ""
+    # if not footer_text:
+    #     instance = FooterText.objects.filter(live=True).first()
+    #     footer_text = instance.body if instance else ""
 
     return {
         "footer_text": footer_text,

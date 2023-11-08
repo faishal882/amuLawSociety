@@ -1,42 +1,29 @@
-    <!-- {% with authors=page.authors.all %} -->
-    <!--     {% if authors %} -->
-    <!--         <h3>Posted by:</h3> -->
-    <!--         <ul> -->
-    <!--             {% for author in authors %} -->
-    <!--                 <li style="display: inline"> -->
-    <!--                     {% image author.author_image fill-40x60 style="vertical-align: middle" %} -->
-    <!--                     {{ author.name }} -->
-    <!--                 </li> -->
-    <!--             {% endfor %} -->
-    <!--         </ul> -->
-    <!--     {% endif %} -->
-    <!-- {% endwith %} -->
-
 {% extends "base.html" %}
 {% load navigation_tags wagtailimages_tags %}
+{% load wagtailcore_tags %}
 
 {% block content %}
-
-    <!-- {% include "home/include/header-blog.html" %} -->
-
+    
+    {% include "base/include/header-blog.html" %}
+   
     <div class="container">
         <div class="row">
             <div class="col-md-8">
+                {% with authors=page.authors.all %}
                 <div class="blog__meta">
-                    {% if page.authors %}
+                    {% if authors %}
                         <div class="blog__avatars">
-                            {% for author in page.authors %}
+                            {% for author in authors %}
                                 <div class="blog__author">
-                                  {% image author.image fill-50x50-c100 class="blog__avatar" %}
+                                  {% image author.author_image fill-50x50-c100 class="blog__avatar" %}
                                   {{ author.name }}
                                 </div>
                             {% endfor %}
                         </div>
                     {% endif %}
                 </div>
-
-                {{ page.body }}
-
+                {% endwith %}
+                {{ page.body|richtext }}
                 {% if page.get_tags %}
                     <p class="blog__tag-introduction">Find more blog posts with similar tags</p>
                     <div class="blog-tags blog-tags--condensed">
