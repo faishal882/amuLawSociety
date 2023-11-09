@@ -1,0 +1,34 @@
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+<div class="blog-listing-card">
+    <a class="blog-listing-card__link" href="{% pageurl event %}">
+        {% with event.thumbnail as main_image %}
+            {% if main_image %}
+            <figure class="blog-listing-card__image">
+                {% image main_image fill-322x247-c100 loading="lazy" %}
+            </figure>
+            {% endif %}
+        {% endwith %}
+        <div class="blog-listing-card__contents">
+            <h2 class="blog-listing-card__title">{{ event.title }}</h2>
+            {% if event.intro %}
+                <p class="blog-listing-card__introduction">{{ event.intro|truncatewords:15 }}</p>
+            {% endif %}
+            <p class="blog-listing-card__metadata">
+                Organised at 
+                {% if event.event_date %}
+                    {{ event.event_date }} by
+                {% endif %}
+                {% with organisers=event.organiser.all %}
+                    {% if organisers %}
+                       {% for organiser in organisers %}
+                          {{ organiser.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </p>
+        </div>
+    </a>
+</div>
+
+

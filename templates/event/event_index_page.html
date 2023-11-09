@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block title %}
+  Events | AMU LAW SOCIETY
+{% endblock %}
+
+{% block content %}
+    {% if not tag %}
+        {% include "base/include/header-index.html" %}
+    {% endif %}
+
+    <div class="container">
+        <div class="blog-list">
+          {% if eventpages %}
+          {% for event in eventpages %}
+            {% with event=event.specific %}
+                {% include "includes/card/event-listing-card.html" %}
+            {% endwith %}
+          {% endfor %}
+          {% else %}
+            <div class="col-md-12">
+              <p>No Events Happening Right Now.</p>
+            </div>
+         {% endif %}
+        </div>
+    </div>
+{% endblock content %}

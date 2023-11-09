@@ -14,9 +14,11 @@
             {% if page.intro %}
                 <p class="index-header__introduction index-header__introduction--blog">{{ page.intro }}</p>
             {% endif %}
-            {% if page.date_published %}
-                <div class="blog__published">
-                    {{ page.date_published }}
+           <!-- For Blogs -->
+           <!-- For Events  -->
+            {% if page.event_date %}
+                <div class="blog__published">Organised at 
+                    {{ page.event_date }}
                 </div>
             {% endif %}
         </div>
