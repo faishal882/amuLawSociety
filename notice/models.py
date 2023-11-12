@@ -9,6 +9,9 @@ from wagtail.search import index
 class NoticeIndexPage(Page):
     intro = models.CharField(blank=True, max_length=250)
     
+    def children(self):
+        return self.get_children().specific().live()
+
     def get_context(self, request):
         context = super().get_context(request)
         noticepages = self.get_children().live().order_by('-first_published_at')

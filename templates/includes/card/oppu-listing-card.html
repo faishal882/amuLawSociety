@@ -1,0 +1,17 @@
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+<div class="blog-listing-card">
+    <a class="blog-listing-card__link" href="{% pageurl oppu %}">
+        <div class="blog-listing-card__contents">
+            <h2 class="blog-listing-card__title">{{ oppu.title }}</h2>
+            {% if oppu.intro %}
+                <p class="blog-listing-card__introduction">{{ oppu.intro|truncatewords:15 }}</p>
+            {% endif %}
+            <p class="blog-listing-card__metadata">
+               {{ oppu.status }}
+            </p>
+        </div>
+    </a>
+</div>
+
+

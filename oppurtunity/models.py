@@ -1,16 +1,18 @@
 from django.db import models
-from django import forms
 
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.fields import RichTextField
 from wagtail.models import Page  
-from wagtail.admin.panels import FieldPanel,  MultiFieldPanel, MultipleChooserPanel
+from wagtail.admin.panels import FieldPanel 
 from wagtail.search import index
 
 
 class OppurtunityIndexPage(Page):
     intro = models.CharField(blank=True, max_length=250)
     
+    def children(self):
+        return self.get_children().specific().live()
+
     def get_context(self, request):
         context = super().get_context(request)
         oppupages = self.get_children().live().order_by('-first_published_at')

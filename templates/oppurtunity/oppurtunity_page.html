@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load navigation_tags wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    
+    {% include "base/include/header-blog.html" %}
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% with authors=page.authors.all %}
+                <div class="blog__meta">
+                    {% if authors %}
+                        <div class="blog__avatars">
+                            {% for author in authors %}
+                                <div class="blog__author">
+                                  {% image author.author_image fill-50x50-c100 class="blog__avatar" %}
+                                  {{ author.name }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% endwith %}
+                {{ page.body|richtext }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
